@@ -5,9 +5,9 @@ int main()
 {
 	vector<int> prices = { 1};
 	int n = prices.size();
-	vector<int> dp1(n);//ÂòÈë
-	vector<int> dp2(n);//¿É
-	vector<int> dp3(n);//Àä
+	vector<int> dp1(n);//Ã‚Ã²ÃˆÃ«
+	vector<int> dp2(n);//Â¿Ã‰
+	vector<int> dp3(n);//Ã€Ã¤
 	if (n == 1)
 	{
 		return 0;
