@@ -2,8 +2,8 @@ class Solution {
 public:
     int getMaxLen(vector<int>& nums) {
 	int m = nums.size();
-	vector<int>dp1(m);
-	vector<int>dp2(m);
+	vector<int>dp1(m);//正数结尾最大数
+	vector<int>dp2(m);//负数结尾最小数
 	int ret = INT_MIN;
 	if(nums[0]>0)
 	dp1[0] = 1;
