@@ -1,32 +1,25 @@
 class Solution {
 public:
-    int getMaxLen(vector<int>& nums) {
-	int m = nums.size();
-	vector<int>dp1(m);//正数结尾最大数
-	vector<int>dp2(m);//负数结尾最小数
-	int ret = INT_MIN;
-	if(nums[0]>0)
-	dp1[0] = 1;
-	if (nums[0] < 0)
-		dp2[0] = 1;
-    if(m==1)
-    {
-        return dp1[0];
-    }
-	for (int i = 1; i < m; i++)
+    int maxProduct(vector<int>& nums) {
+	int n = nums.size();
+	vector<double>f(n);//最大数
+	vector<double>g(n);//最小数
+	int mx = nums[0];
+	f[0] = g[0] = nums[0];
+	for (int i = 1; i < n; i++)
 	{
 		if (nums[i] > 0)
 		{
-			dp1[i] = dp1[i - 1] + 1;
-			dp2[i] = dp2[i-1]==0?0:dp2[i-1] + 1;
+			f[i] =(double) max(f[i - 1] * nums[i],(double)nums[i]);
+			g[i] = (double)min(g[i - 1] * nums[i], (double)nums[i]);
 		}
-		if(nums[i]<0)
+		if (nums[i] < 0)
 		{
-			dp1[i] = dp2[i - 1] == 0 ? 0 : dp2[i - 1] + 1;
-			dp2[i] = dp1[i-1] + 1;
+			f[i] = (double)max(g[i - 1] * nums[i], (double)nums[i]);
+			g[i] = (double)min(f[i-1] * nums[i], (double)nums[i]);
 		}
-		ret = max(dp1[i],ret);
+		mx = (double)max((double)mx,f[i]);
 	}
-	return ret;
+	return mx;
     }
 };
